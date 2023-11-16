@@ -1,0 +1,8 @@
+<app-header *ngIf="userLogin"></app-header>
+<app-dashboard *ngIf="userLogin"></app-dashboard>
+
+<main [id]="userLogin?'main':''" class="" [ngClass]="userLogin?'main':''">
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer  *ngIf="userLogin"></app-footer>

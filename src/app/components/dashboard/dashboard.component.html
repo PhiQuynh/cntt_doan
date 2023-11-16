@@ -1,0 +1,279 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav" *ngIf="ktraBoMon">
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="home/page">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-home"
+        data-bs-toggle="collapse"
+        routerLink="home/list/sv"
+      >
+        <i class="fa-regular fa-user"></i><span>Danh sách sinh viên</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="components-home"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
+        <li>
+          <a routerLink="home/list/sv">
+            <i class="bi bi-circle"></i><span>Danh sách sinh viên bảng</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="add/sv">
+            <i class="bi bi-circle"></i><span>Thêm mới sinh viên</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="list/sv/excel">
+            <i class="bi bi-circle"></i><span>Danh sách sinh viên excel</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="list/sv/no">
+            <i class="bi bi-circle"></i><span>Danh sách sinh viên không đạt</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav"
+        data-bs-toggle="collapse"
+        routerLink="teacher/list"
+      >
+      <i class="bi bi-person-fill"></i><span>Danh sách giảng viên</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="components-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
+        <li>
+          <a routerLink="teacher/list">
+            <i class="bi bi-circle"></i><span>Danh Sách giảng viên</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="teacher/add">
+            <i class="bi bi-circle"></i><span>Thêm mới giảng viên</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/QLCSVC/user/phancongquanly">
+            <i class="bi bi-circle"></i><span>Phân công quản lý</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#forms-nav"
+        data-bs-toggle="collapse"
+        routerLink="councli/list"
+      >
+        <i class="fa-solid fa-house"></i><span>Quản lý hội đồng</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="forms-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
+        <li>
+          <a routerLink="councli/list">
+            <i class="bi bi-circle"></i><span>Danh sách hội đồng</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="councli/add">
+            <i class="bi bi-circle"></i><span>Thêm hội đồng</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a routerLink="/QLCSVC/phong/addPhong">
+            <i class="bi bi-circle"></i
+            ><span>List danh sách giảng viên theo hội đồng</span>
+          </a>
+        </li> -->
+      </ul>
+    </li>
+    <!-- End Forms Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#tables-nav"
+        data-bs-toggle="collapse"
+        routerLink="master/list"
+      >
+        <i class="bi bi-layout-text-window-reverse"></i
+        ><span>Quản lý đợt bảo vệ</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="tables-nav"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
+        <li>
+          <a routerLink="master/list">
+            <i class="bi bi-circle"></i><span>Danh sách đợt bảo vệ</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="master/list/sv">
+            <i class="bi bi-circle"></i
+            ><span>Danh sách sinh viên theo đợt bảo vệ</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="master/add">
+            <i class="bi bi-circle"></i><span>Thêm mới đợt bảo vệ</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a  (click)="logout()"
+        class="nav-link collapsed"
+        data-bs-target="#tables-nav"
+        data-bs-toggle="collapse"
+        routerLink="master/list"
+      >
+      <i class="bi bi-arrow-left-square"></i>
+        <span>Logout</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    
+    </li>
+    <!-- End Tables Nav -->
+  </ul>
+
+  <ul class="sidebar-nav" id="sidebar-nav-teacher" *ngIf="ktraGiangVien">
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="home/page">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-home"
+        data-bs-toggle="collapse"
+        routerLink="teacher/list/sv"
+      >
+        <i class="fa-regular fa-user"></i><span>Danh sách sinh viên hướng dẫn</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="components-home"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav-teacher"
+      >
+        <li>
+          <a routerLink="teacher/list/sv">
+            <i class="bi bi-circle"></i><span>Danh sách sinh viên bảng</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="add/sv">
+            <i class="bi bi-circle"></i><span>Thêm mới sinh viên</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="list/sv/excel">
+            <i class="bi bi-circle"></i><span>Danh sách sinh viên excel</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav"
+        data-bs-toggle="collapse"
+        routerLink="list/sv/no"
+      >
+      <i class="bi bi-person-fill"></i><span>Danh sách sinh viên không đạt</span>
+      <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+      </a>
+      
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav"
+        data-bs-toggle="collapse"
+        routerLink="teacher/councli"
+      >
+      <i class="ri-add-circle-line"></i><span>Danh sách hội đồng tham gia</span>
+      <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+      </a>
+      
+    </li>
+    <!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#tables-nav"
+        data-bs-toggle="collapse"
+        routerLink="teacher/edit"
+      >
+        <i class="bi bi-layout-text-window-reverse"></i
+        ><span>Cập nhập thông tin cá nhân</span>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#tables-nav"
+        data-bs-toggle="collapse"
+        routerLink="teacher/edit/account"
+      >
+      <i class="ri-account-circle-line"></i>
+      <span>Cập nhập tài khoản</span>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+      </a>
+    
+    </li>
+    <li class="nav-item" (click)="logout()">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#tables-nav"
+        data-bs-toggle="collapse"
+        routerLink="master/list"
+      >
+      <i class="bi bi-arrow-left-square"></i>
+        <span>Logout</span>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+      </a>
+    
+    </li>
+    <!-- End Tables Nav -->
+  </ul>
+</aside>
+<!-- End Sidebar-->

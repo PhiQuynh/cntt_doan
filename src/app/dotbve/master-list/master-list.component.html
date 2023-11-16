@@ -1,0 +1,65 @@
+
+<div class="pagetitle">
+    <h1>Master</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="home/page">Master</a></li>
+        <li class="breadcrumb-item active">Danh sách đợt bảo vệ</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  
+      <div class="table-responsive">
+          <div class="table-wrapper">
+              <div class="table-title">
+                  <div class="row">
+                      <div class="col-sm-5">
+                          <h2>Danh Sách <b>Đợt bảo vệ</b></h2>
+                      </div>
+                  </div>
+              </div>
+              <table class="table table-striped table-hover">
+                  <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>Tên đợt bảo vệ</th>
+                          <th>Ngày bắt đầu</th>
+                          <th>Ngày kết thúc</th>
+                          <th>Thao tác</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let m of masters">
+                          <td><a (click)="clickEdit()">{{m.masterId}}</a></td>
+                          <td>{{m.masterName}}</td>
+                          <td>{{m.startDate}}</td>
+                          <td>{{m.endDate}}</td>
+                          <td >
+                            <a class="delete" title="Delete" data-toggle="tooltip" data-bs-toggle="modal"  data-bs-target="#verticalycentered"><i class="material-icons"  style="color: red;">&#xE5C9;</i></a>
+                          </td>
+                            <div class="modal fade" id="verticalycentered" tabindex="-1">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Vertically Centered</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Xác nhận xóa đợt bảo vệ
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div><!-- End Vertically centered Modal--> 
+                      </tr>
+  
+                  </tbody>
+              </table>
+             
+          </div>
+      </div>
+  
+  

@@ -1,0 +1,136 @@
+<div class="pagetitle">
+    <h1>Student</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a>Student</a></li>
+        <li class="breadcrumb-item active">Cập nhập tài khoản</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-12">
+  
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Xem thông tin cá nhân</button>
+                  </li>
+      
+                  <li class="nav-item" >
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Cập nhập thông tin</button>
+                  </li>
+            </ul>
+            <div class="tab-content pt-2">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+  
+                    <h5 class="card-title">Profile Teacher</h5>
+                    <ng-container >
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Họ và tên</div>
+                        <div class="col-lg-9 col-md-8">{{teacher?.teacherName}}</div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Email</div>
+                        <div class="col-lg-9 col-md-8">{{teacher?.email}}</div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Số điện thoại</div>
+                        <div class="col-lg-9 col-md-8">{{teacher?.phone}}</div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Định hướng</div>
+                        <div class="col-lg-9 col-md-8">{{teacher?.researchDirection}}</div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Bộ môn</div>
+                        <div class="col-lg-9 col-md-8">{{teacher?.subjectName}}</div>
+                      </div>
+    
+                    </ng-container>
+                </div>
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+    
+                    <!-- Profile Edit Form -->
+                    <form [formGroup]="updateTeacherForm" (ngSubmit)="updateTeachers(updateTeacherForm.value)">
+    
+                    <div class="row mb-3" style="margin-bottom: 10px;">
+                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Họ và tên </label>
+                        <div class="col-md-8 col-lg-9">
+                        <input name="fullName" formControlName="teacherName" type="text" class="form-control" id="fullName" >
+                        
+                        </div>
+                    </div>
+                    <div class="row mb-3" style="margin-bottom: 10px;">
+                        <label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                        <div class="col-md-8 col-lg-9">
+                        <input name="country" formControlName="email" type="text" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="row mb-3" style="margin-bottom: 10px;">
+                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
+                        <div class="col-md-8 col-lg-9">
+                        <input name="fullName" formControlName="phone" type="text" class="form-control" id="fullName" >
+                        
+                        </div>
+                    </div>
+                    <div class="row mb-3" style="margin-bottom: 10px;">
+                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Định hướng</label>
+                        <div class="col-md-8 col-lg-9">
+                        <input name="fullName" formControlName="researchDirection" type="text" class="form-control" id="fullName" >
+                        
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="Address" class="col-md-4 col-lg-3 col-form-label">Bộ môn</label>
+                        <div class="col-md-4 col-lg-5 d-flex align-items-center" >
+                        <select class="form-select form-select-sm " #select formControlName="subjectId" aria-label=".form-select-lg example">
+                            <option value="" disabled>--Chọn bộ môn--</option>
+                            <option *ngFor="let s of subjects" value={{s.subjectId}} >{{s.subjectName}}</option>
+                        </select>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                        Cập nhập tài khoản
+                        </button>
+                    </div>
+                    
+                    <div class="modal fade" id="verticalycentered" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title">Vertically Centered</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            Bạn có muốn thay đổi mật khẩu không ?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Xác nhận</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </form>
+    
+                </div>
+  
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  

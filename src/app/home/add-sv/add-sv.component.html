@@ -1,0 +1,125 @@
+<div class="pagetitle">
+    <h1>Student</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a (click)="onClick()">Student</a></li>
+        <li class="breadcrumb-item active">Thêm mới sinh viên</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-12">
+  
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+  
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-edit">Thêm mới sinh viên</button>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
+  
+                <!-- Profile Edit Form -->
+                <form [formGroup]="addForm" (ngSubmit)="addSV(addForm.value)">
+  
+                  <div class="row mb-3" style="margin-bottom: 10px;">
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Tên sinh viên</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="fullName" formControlName="studentName" type="text" class="form-control" id="fullName" >
+                      <!-- <p class="text-danger mt-2"  *ngIf="(addForm.get('studentName').touched ||submited)&& addForm.get('studentName').errors?.['required']">Trường này không được bỏ trống.</p> -->
+                    </div>
+                  </div>
+                   <div class="row mb-3" style="margin-bottom: 10px;">
+                    <label for="Country" class="col-md-4 col-lg-3 col-form-label">Mã số sinh viên</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="country" formControlName="mssv" type="text" class="form-control" >
+                      <!-- <p class="text-danger mt-2"  *ngIf="(editForm.get('tuoi').touched||submited)&&editForm.get('tuoi').errors?.['required']">Trường này không được bỏ trống.</p>
+                      <p class="text-danger mt-2"  *ngIf="(editForm.get('tuoi').touched||submited)&&editForm.get('tuoi').errors?.['pattern']">Số nhập vào phải là số dương.</p> -->
+                    </div>
+                  </div>
+                  <div class="row mb-3" style="margin-bottom: 10px;">
+                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Lớp</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="company" formControlName="studentClass" type="text" class="form-control" id="company" >
+                      <!-- <p class="text-danger mt-2"  *ngIf="(editForm.get('username').touched||submited)&&editForm.get('username').errors?.['required']">Trường này không được bỏ trống.</p> -->
+                    </div>
+                  </div>
+                  <div class="row mb-3" style="margin-bottom: 10px;">
+                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Tên đề tài (Tiếng Việt) </label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="company" formControlName="titleNameVn" type="text" class="form-control" id="company" >
+                      <!-- <p class="text-danger mt-2"  *ngIf="(editForm.get('username').touched||submited)&&editForm.get('username').errors?.['required']">Trường này không được bỏ trống.</p> -->
+                    </div>
+                  </div>
+                  <div class="row mb-3" style="margin-bottom: 10px;">
+                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Tên đề tài (Tiếng Anh)</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="company" formControlName="titleNameEn" type="text" class="form-control" id="company" >
+                      <!-- <p class="text-danger mt-2"  *ngIf="(editForm.get('username').touched||submited)&&editForm.get('username').errors?.['required']">Trường này không được bỏ trống.</p> -->
+                    </div>
+                  </div>
+
+                  <div class="row mb-3" style="margin-bottom: 10px;">
+                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Giảng viên hướng dẫn</label>
+                    <div class="col-md-4 col-lg-5 d-flex align-items-center" >
+                      <select class="form-select form-select-sm " #select formControlName="teacherHDId"  aria-label=".form-select-lg example">
+                        <option value="" disabled>--Chọn giảng viên hướng dẫn--</option>
+                        <option *ngFor="let t of teachers" value="{{t.teacherId}}" >{{t.teacherName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="row mb-3" style="margin-bottom: 10px;">
+                     <ng-container  >
+                        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Đợt bảo vệ</label>
+                      <div class="col-md-4 col-lg-5 d-flex align-items-center" >
+                        <select class="form-select form-select-sm " #select formControlName="masterId" aria-label=".form-select-lg example">
+                          <option value="" disabled>--Chọn đợt bảo vệ--</option>
+                          <option *ngFor="let m of maters" value="{{m.masterId}}">{{m.masterName}}</option>
+                        </select>
+                        <!-- <button type="button" class="btn btn-primary  ms-3" >Add</button>
+                        <button type="button" class="btn btn-primary   ms-3" >Delete</button> -->
+                      </div>
+                     </ng-container>
+                  </div>
+                  
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                      Thêm mới sinh viên
+                    </button>
+                  </div>
+                  
+                  <div class="modal fade" id="verticalycentered" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Vertically Centered</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Xác nhận thêm mới sinh viên
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Xác nhận</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Vertically centered Modal-->
+                </form><!-- End Profile Edit Form -->
+  
+              </div>
+  
+            </div><!-- End Bordered Tabs -->
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
