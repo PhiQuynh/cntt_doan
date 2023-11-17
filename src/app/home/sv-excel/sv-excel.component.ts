@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
@@ -65,13 +65,18 @@ export class SvExcelComponent implements OnInit {
   onUpload() {
     if (this.file) {
       const formData = new FormData();
-  
       formData.append('file', this.file, this.file.name);
   
-      const upload$ = this.http.post("http://localhost:9090/QLCSVC/api/file/upload", formData);
+      const headers = new HttpHeaders({
+       'Accept': '*/*',
+      //  'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Type' : 'application/problem+json'
+      });
   
-  
-      upload$.subscribe({
+      this.http.post("http://localhost:9090/QLCSVC/api/file/upload", formData, {
+        headers: headers,
+        responseType: 'text', // explicitly set the response type to text
+      }).subscribe({
         next: () => {
           this.toastr.success("Upload file thành công")
         },
@@ -81,6 +86,22 @@ export class SvExcelComponent implements OnInit {
       });
     }
   }
+
+  // onUpload() {
+  //   if (this.file) {
+  //     const formData = new FormData();
+  //     formData.append('file', this.file, this.file.name);
+  //     const upload$ = this.http.post("http://localhost:9090/QLCSVC/api/file/upload", formData);
+  //     upload$.subscribe({
+  //       next: () => {
+  //         this.toastr.success("Upload file thành công")
+  //       },
+  //       error: (error: any) => {
+  //         return throwError(() => error);
+  //       },
+  //     });
+  //   }
+  // }
 
   // addFile() {
   //   console.log(this.file, "file");

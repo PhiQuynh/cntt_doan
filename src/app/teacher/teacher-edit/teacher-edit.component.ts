@@ -41,17 +41,17 @@ export class TeacherEditComponent implements OnInit {
       subjectId: new FormControl("", Validators.required)
     })
 
-    this.getSubjects();
+    // this.getSubjects();
 
 
   }
 
-  getSubjects(){
-    this.subjectService.getSubject().subscribe((data) => {
-      console.log(data, "subject")
-      this.subjects = data
-    })
-}
+//   getSubjects(){
+//     this.subjectService.getSubject().subscribe((data) => {
+//       console.log(data, "subject")
+//       this.subjects = data
+//     })
+// }
 
 updateTeachers(updateTeacherForm : FormGroup){
   this.submited = true;

@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MaterService {
-  url = 'http://localhost:9090/master';
+  url = 'http://localhost:8085/master';
 
   constructor(private http : HttpClient) { }
 
@@ -23,7 +23,7 @@ export class MaterService {
   }
 
   public getMaterAll() : Observable<Maters[]>{
-    const getUrl =  'http://localhost:9090/master/getAll'
+    const getUrl =  'http://localhost:8085/master/getAll'
     return this.http.get<Maters[]>(getUrl, httpOptions)
   }
 
@@ -37,7 +37,7 @@ export class MaterService {
   }
 
   public deleteMaster(id : any){
-    const getUrl ="http://localhost:9090/master" + "/" +id
+    const getUrl ="http://localhost:8085/master" + "/" +id
     return this.http.delete(getUrl, id)
   }
 }

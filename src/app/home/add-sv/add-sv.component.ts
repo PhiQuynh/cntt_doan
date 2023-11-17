@@ -83,13 +83,6 @@ export class AddSvComponent implements OnInit {
       })
     }
 
-    // getMaters(){
-    //   this.materService.getMater(this.year).subscribe((data) => {
-    //     console.log(data, "mater list");
-    //     this.maters = data;
-    //   })
-    // }
-
     onClick(){
       this.router.navigateByUrl("home/list/sv")
     }

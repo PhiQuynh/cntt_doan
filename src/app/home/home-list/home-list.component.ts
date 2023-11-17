@@ -29,7 +29,7 @@ export class HomeListComponent {
   ngOnInit(){
       this.materDetailService.getListSV().subscribe((data) => {
         console.log(data, "list sv")
-        this.students = data
+        this.students = data.masterDetails
       })
       
       this.getMaters(this.year);

@@ -15,7 +15,7 @@ export class SubjectService {
   constructor(private http : HttpClient) { }
 
   public getSubject(): Observable<Subject[]>{
-    const url = 'http://localhost:9090/subject'
+    const url = 'http://localhost:8085/subject'
     return this.http.get<Subject[]>(url,httpOptions )
   }
 }

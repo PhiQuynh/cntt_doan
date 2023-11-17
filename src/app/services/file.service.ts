@@ -15,14 +15,14 @@ export class FileService {
   constructor(private http : HttpClient) { }
 
   getAllFile(){
-     const getUrl = "http://localhost:9090/QLCSVC/api/file/files" 
+     const getUrl = "http://localhost:8085/QLCSVC/api/file/files" 
      return this.http.get<any>(getUrl)
   }
   getFile(filename : any){
-    const getUrl = "http://localhost:9090/QLCSVC/api/file" + "/" + filename 
+    const getUrl = "http://localhost:8085/QLCSVC/api/file" + "/" + filename 
     return this.http.get<any>(getUrl)
   }
-  url="http://localhost:9090/QLCSVC/api/file/upload"
+  url="http://localhost:8085/QLCSVC/api/file/upload"
 
   public upload(file:any):Observable<any>{
     const formData = new FormData();

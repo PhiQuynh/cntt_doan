@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class RoleService {
 
-  getUrl = "http://localhost:9090/role"
+  getUrl = "http://localhost:8085/role"
 
   constructor(private http : HttpClient) { }
 

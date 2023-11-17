@@ -16,7 +16,9 @@ export class ListSvNoComponent implements OnInit {
   listSV = {}
   masterDetails :any= []
 
-  constructor(private masterDetailService : MaterDetailService, private router : Router){}
+  constructor(private masterDetailService : MaterDetailService, 
+    private router : Router
+    ){}
   ngOnInit(): void {
     this.ListSV()
   }

@@ -32,17 +32,17 @@ export class UserService {
   }
 
   register(form : any){
-    const url = 'http://localhost:9090/user/register'
+    const url = 'http://localhost:8085/user/register'
     return this.http.post<any>(url, form, httpOptions).pipe(catchError(this.handleError))
   }
 
   getUser(username : any){
-    const url = 'http://localhost:9090/user/'+username
+    const url = 'http://localhost:8085/user/'+username
     return this.http.get<any>(url,username);
   }
 
   updateAccount(form : any){
-    const url = 'http://localhost:9090/user'
+    const url = 'http://localhost:8085/user'
     return this.http.put(url, form, httpOptions).pipe(catchError(this.handleError));
   }
 }

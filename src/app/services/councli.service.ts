@@ -25,10 +25,10 @@ export class CouncliService {
     return throwError('Something went wrong');
   };
 
-  url = "http://localhost:9090/coucil"
+  url = "http://localhost:8085/coucil"
 
   getCouncli(){
-    const getUrl = "http://localhost:9090/coucil/getAll"
+    const getUrl = "http://localhost:8085/coucil/getAll"
     return this.http.get(getUrl, httpOptions);
   }
 
@@ -38,7 +38,7 @@ export class CouncliService {
   }
 
   getCouncliByTeacher(teacherId : any){
-    const getUrl = "http://localhost:9090/teachercoucil/teacher" + "/" +teacherId
+    const getUrl = "http://localhost:8085/teachercoucil/teacher" + "/" +teacherId
     return this.http.get(getUrl, teacherId)
   }
 }

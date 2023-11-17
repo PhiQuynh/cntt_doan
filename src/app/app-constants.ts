@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static BASE_URL_API = 'http://localhost:9090';
+    public static BASE_URL_API = 'http://localhost:8085';
   }

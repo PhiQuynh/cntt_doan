@@ -12,10 +12,10 @@ const httpOptions = {
 })
 export class MaterDetailService {
 
-  geturl = 'http://localhost:9090/masterdetail';
-  private REST_API_MATERDETAILS = "http://localhost:9090/masterdetail/getById"
-  private REST_API_MATERDETAILS_IMAGE = "http://localhost:9090/file/image/details"
-  private REST_API_MATERDETAILS_IMAGES = "http://localhost:9090/file/image/detail"
+  geturl = 'http://localhost:8085/masterdetail';
+  private REST_API_MATERDETAILS = "http://localhost:8085/masterdetail/getById"
+  private REST_API_MATERDETAILS_IMAGE = "http://localhost:8085/file/image/details"
+  private REST_API_MATERDETAILS_IMAGES = "http://localhost:8085/file/image/detail"
 
   constructor(
     private http : HttpClient
@@ -37,7 +37,7 @@ export class MaterDetailService {
   }
 
   public addSV(data : any){
-    const url = 'http://localhost:9090/masterdetail'
+    const url = 'http://localhost:8085/masterdetail'
     return this.http.post<any>(url, data, httpOptions).pipe(catchError(this.handleError))
   }
 
@@ -47,43 +47,43 @@ export class MaterDetailService {
   }
 
   public getMasterDetails(){
-    const url = `http://localhost:9090/masterdetail/details?offset=0&limit=5&materId=1`;
+    const url = `http://localhost:8085/masterdetail/details?offset=0&limit=5&materId=1`;
      return this.http.get<any>(url);
   }
 
   public listMasterDetailSV(){
-    const getSV = "http://localhost:9090/masterdetail/sv<5"
+    const getSV = "http://localhost:8085/masterdetail/sv<5"
     return this.http.get<any>(getSV);
   }
 
   public teacherListSVHD(id: any){
-    const getSV = "http://localhost:9090/masterdetail/list/SV"+"/"+ id
+    const getSV = "http://localhost:8085/masterdetail/list/SV"+"/"+ id
     return this.http.get(getSV, id);
   }
 
   public deleteMasterDetals(id: any){
-    const getUrl = "http://localhost:9090/masterdetail" + "/" + id
+    const getUrl = "http://localhost:8085/masterdetail" + "/" + id
     return this.http.delete(getUrl, id)
   }
 
   public updateTeacherPB(form : any){
-    const getUrl = "http://localhost:9090/masterdetail/edit_gvpb";
+    const getUrl = "http://localhost:8085/masterdetail/edit_gvpb";
     return this.http.put(getUrl, form)
   }
   public updateTeacherHD(form : any){
-    const getUrl = "http://localhost:9090/masterdetail/edit_gvpb";
+    const getUrl = "http://localhost:8085/masterdetail/edit_gvpb";
     return this.http.put(getUrl, form)
   }
   public updateTitle(form : any){
-    const getUrl = "http://localhost:9090/masterdetail/edit_gvpb";
+    const getUrl = "http://localhost:8085/masterdetail/edit_gvpb";
     return this.http.put(getUrl, form)
   }
   public updateScoreCouncli(form : any){
-    const getUrl = "http://localhost:9090/masterdetail/edit_score_coucil";
+    const getUrl = "http://localhost:8085/masterdetail/edit_score_coucil";
     return this.http.put(getUrl, form)
   }
   public updateScoreArgument(form : any){
-    const getUrl = "http://localhost:9090/masterdetail/edit_score_argument";
+    const getUrl = "http://localhost:8085/masterdetail/edit_score_argument";
     return this.http.put(getUrl, form)
   }
 
