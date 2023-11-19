@@ -17,11 +17,15 @@
             <ul class="nav nav-tabs nav-tabs-bordered">
   
               <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-edit">Thêm mới hội đồng</button>
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Thêm mới hội đồng</button>
+              </li>
+
+              <li class="nav-item" >
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Thêm sinh viên vào hội đồng</button>
               </li>
             </ul>
             <div class="tab-content pt-2">
-              <div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
+              <div class="tab-pane fade show active profile-overview" id="profile-overview">
   
                 <!-- Profile Edit Form -->
                 <form [formGroup]="addCouncli" >
@@ -50,7 +54,7 @@
                     <div class="col-md-4 col-lg-5 d-flex align-items-center" >
                       <select class="form-select form-select-sm " #select formControlName="subjectId" aria-label=".form-select-lg example">
                         <option [value]="" disabled>--Chọn bộ môn--</option>
-                        <option *ngFor="let s of subjects" value={{s.subjectId}} >{{s.subjectName}}</option>
+                        <option  [value]="1">Khoa học máy tính</option>
                       </select>
                     </div>
                   </div>
@@ -77,6 +81,78 @@
                       </div>
                     </div>
                   </div><!-- End Vertically centered Modal-->
+                </form><!-- End Profile Edit Form -->
+  
+              </div>
+
+
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                <!-- Profile Edit Form -->
+                <form enctype="multipart/form-data">
+                 
+                  <div class="row" style="margin-top:10px ;margin-bottom: 10px;">
+                    <div class="col-lg-3 col-md-4 label ">Username</div>
+                    <div class="col-lg-9 col-md-8"></div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Họ tên</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="fullName" type="text" class="form-control" formControlName="teacherName" id="fullName" >
+                    </div>
+                  </div>
+                  
+                  <div class="row mb-3">
+                    <label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="country" type="text" class="form-control" formControlName="email" id="Country" >
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="phone" type="text" class="form-control" formControlName="phone" id="Phone" >
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Định hướng </label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="email" type="text" class="form-control" formControlName="researchDirection" id="decrepstion" >
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Bộ môn</label>
+                    <div class="col-md-4 col-lg-5 d-flex align-items-center" >
+                      <select class="form-select form-select-sm " #select formControlName="subjectId" aria-label=".form-select-lg example">
+                        <option value="" disabled>--Chọn bộ môn--</option>
+                        <option *ngFor="let s of subjects" value={{s.subjectId}} >{{s.subjectName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                      Thêm mới
+                    </button>
+                  </div>
+                  <div class="modal fade" id="verticalycentered" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Vertically Centered</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Xác nhận thêm mới thông tin giảng viên
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" >Xác nhận</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Vertically centered Modal-->
+  
                 </form><!-- End Profile Edit Form -->
   
               </div>
