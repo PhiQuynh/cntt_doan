@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Maters } from 'src/app/models/Maters';
-import { Student } from 'src/app/models/Student';
 import { MaterDetailService } from 'src/app/services/mater-detail.service';
-import { MaterService } from 'src/app/services/mater.service';
 import { TeacherStudentService } from 'src/app/services/teacher-student.service';
 
 @Component({
-  selector: 'app-teacher-list-sv',
-  templateUrl: './teacher-list-sv.component.html',
-  styleUrls: ['./teacher-list-sv.component.css'],
+  selector: 'app-teacher-list-sv-invite',
+  templateUrl: './teacher-list-sv-invite.component.html',
+  styleUrls: ['./teacher-list-sv-invite.component.css']
 })
-export class TeacherListSvComponent implements OnInit {
+export class TeacherListSvInviteComponent {
+
   students: any;
   maters: Maters[] = [];
   year: number = 2023;
@@ -21,15 +21,15 @@ export class TeacherListSvComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private materDetailService: MaterDetailService,
+    private toastr: ToastrService,
     private teacherStudentService : TeacherStudentService,
     private http: HttpClient
   ) {}
 
   ngOnInit() {
     let teacherId = sessionStorage.getItem('teacherId');
-    this.teacherStudentService.getSV_accept(teacherId).subscribe((data) => {
-      console.log(data, 'teacher list sv hd');
+    this.teacherStudentService.getSV_invite(teacherId).subscribe((data) => {
+      console.log(data, 'teacher list invite');
       // this.data = data;
       // this.students = data;
       this.materDetails = data;
@@ -47,6 +47,20 @@ export class TeacherListSvComponent implements OnInit {
       state: { masterDetailId: masterDetailId },
     });
   }
+
+  AcceptStudent(id:any){
+    this.teacherStudentService.acceptStudent(id).subscribe(data => {
+      this.toastr.success("Xác nhận hướng dẫn thành công")
+    })
+  }
+
+  NotAcceptStudent(id:any){
+    this.teacherStudentService.not_acceptStudent(id).subscribe(data => {
+      this.toastr.success("Xác nhận không hướng dẫn ")
+    })
+  }
+
+
   // getMaters(year: number){
   //   this.materService.getMater(year).subscribe((data) => {
   //     console.log(data, "mater list");

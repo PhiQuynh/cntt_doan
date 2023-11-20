@@ -84,6 +84,12 @@ export class EditSvComponent implements OnInit {
     });
   }
 
+  goToUpdateCouncli(){
+    this.router.navigate(["sv/update/councli"], {
+      state : {councli : this.masterDetailId}
+    })
+  }
+
     onClick(){
       this.router.navigateByUrl("home/list/sv")
     }

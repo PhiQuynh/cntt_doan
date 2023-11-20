@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
-  headers: new HttpHeaders()
-};
+  headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
+}
 
 
 @Injectable({
@@ -12,26 +12,25 @@ const httpOptions = {
 })
 export class FileService {
 
-  constructor(private http : HttpClient) { }
 
-  getAllFile(){
-     const getUrl = "http://localhost:8085/QLCSVC/api/file/files" 
-     return this.http.get<any>(getUrl)
-  }
-  getFile(filename : any){
-    const getUrl = "http://localhost:8085/QLCSVC/api/file" + "/" + filename 
-    return this.http.get<any>(getUrl)
-  }
-  url="http://localhost:8085/QLCSVC/api/file/upload"
+  private baseUrl = 'http://localhost:8085/QLCSVC/api/file';
+	
+  constructor(private http: HttpClient) { }
 
-  public upload(file:any):Observable<any>{
-    const formData = new FormData();
-    formData.append("file", file)
-    console.log("formData: ",formData);
-    
-    return this.http.post(this.url, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
+  upload(file: File): Observable<HttpEvent<any>> {
+  const formData: FormData = new FormData();
+
+  formData.append('file', file);
+
+  const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+
+  return this.http.request(req);
+  }
+
+  getFiles(): Observable<any> {
+  return this.http.get(`${this.baseUrl}/files`);
   }
 }

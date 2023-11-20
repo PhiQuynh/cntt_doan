@@ -38,6 +38,8 @@ import { TeacherCouncliComponent } from './councli/teacher-councli/teacher-counc
 import { UpdateTitleComponent } from './score/update-title/update-title.component';
 import { UpdateTeacherpbComponent } from './score/update-teacherpb/update-teacherpb.component';
 import { UpdateTeacherhdComponent } from './score/update-teacherhd/update-teacherhd.component';
+import { TeacherListSvInviteComponent } from './teacher/teacher-list-sv-invite/teacher-list-sv-invite.component';
+import { UpdateCouncliComponent } from './score/update-councli/update-councli.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,9 @@ import { UpdateTeacherhdComponent } from './score/update-teacherhd/update-teache
     TeacherCouncliComponent,
     UpdateTitleComponent,
     UpdateTeacherpbComponent,
-    UpdateTeacherhdComponent
+    UpdateTeacherhdComponent,
+    TeacherListSvInviteComponent,
+    UpdateCouncliComponent
   ],
   imports: [
     BrowserModule,

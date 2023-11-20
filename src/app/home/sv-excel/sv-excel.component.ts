@@ -1,40 +1,80 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { FileService } from 'src/app/services/file.service';
-import * as xls from 'xlsx';
-
 @Component({
   selector: 'app-sv-excel',
   templateUrl: './sv-excel.component.html',
   styleUrls: ['./sv-excel.component.css'],
 })
 export class SvExcelComponent implements OnInit {
+[x: string]: any;
   filename: any;
   listFile: any;
   users: any;
   file!: File;
+  fileObj !: File
+  selectedFiles?: FileList;
+		  currentFile?: File;
+		  progress = 0;
+		  message = '';
+		
+		  fileInfos?: Observable<any>;
   
   constructor(
     private fileService: FileService,
     private toastr: ToastrService,
-    private http: HttpClient,
-    // private client : HttpClientModule 
+    private http: HttpClient
+
   ) {}
 
-  ngOnInit(): void {
-    this.getAllFile();
-  }
-
-  getAllFile() {
-    this.fileService.getAllFile().subscribe((data) => {
-      this.listFile = data;
-    });
-  }
+  ngOnInit() {
+    this.fileInfos = this.fileService.getFiles();
+    }
+  
+    selectFile(event: any) {
+    this.selectedFiles = event.target.files;
+    }
+  
+    upload(): void {
+    this.progress = 0;
+    
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+    
+      if (file) {
+      this.currentFile = file;
+    console.log( this.currentFile, "current file");
+    
+      this.fileService.upload(this.currentFile).subscribe(
+        (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.message = event.body.message;
+          this.fileInfos = this.fileService.getFiles();
+        }
+        },
+        (err: any) => {
+        console.log(err);
+        this.progress = 0;
+    
+        if (err.error && err.error.message) {
+          this.message = err.error.message;
+        } else {
+          this.message = 'Could not upload the file!';
+        }
+    
+        this.currentFile = undefined;
+        });
+      }
+    
+      this.selectedFiles = undefined;
+    }
+    }
   downloadFile(filename: any) {
-    const fileUrl = 'http://localhost:9090/QLCSVC/api/file' + '/' + filename;
+    const fileUrl = 'http://localhost:8085/QLCSVC/api/file' + '/' + filename;
 
     this.http
       .get(fileUrl, { responseType: 'blob' })
@@ -60,64 +100,27 @@ export class SvExcelComponent implements OnInit {
 
   onChange(event: any) {
     this.file = event.target.files[0];
-  }
-
-  onUpload() {
-    if (this.file) {
-      const formData = new FormData();
-      formData.append('file', this.file, this.file.name);
-  
-      const headers = new HttpHeaders({
-       'Accept': '*/*',
-      //  'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        'Content-Type' : 'application/problem+json'
-      });
-  
-      this.http.post("http://localhost:9090/QLCSVC/api/file/upload", formData, {
-        headers: headers,
-        responseType: 'text', // explicitly set the response type to text
-      }).subscribe({
-        next: () => {
-          this.toastr.success("Upload file thành công")
-        },
-        error: (error: any) => {
-          return throwError(() => error);
-        },
-      });
-    }
-  }
-
-  // onUpload() {
-  //   if (this.file) {
-  //     const formData = new FormData();
-  //     formData.append('file', this.file, this.file.name);
-  //     const upload$ = this.http.post("http://localhost:9090/QLCSVC/api/file/upload", formData);
-  //     upload$.subscribe({
-  //       next: () => {
-  //         this.toastr.success("Upload file thành công")
-  //       },
-  //       error: (error: any) => {
-  //         return throwError(() => error);
-  //       },
-  //     });
-  //   }
-  // }
-
-  // addFile() {
-  //   console.log(this.file, "file");
+    console.log(this.file, "file");
     
-  //   this.fileService
-  //     .upload(this.file)
-  //     .pipe(
-  //       catchError((file) => {
-  //         this.toastr.error('Upload file thất bại');
-  //         throw new Error('Upload file thất bại');
-  //       })
-  //     )
-  //     .subscribe((data) => {
-  //       this.toastr.success('Upload file thành công');
-  //     });
-  // }
+  }
 
- 
+  private headers = new Headers({'Content-Type' : 'multipart/form-data'});
+    
+  sendFile(fileObj: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', fileObj);
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+    return this.http.post('http://localhost:8085/QLCSVC/api/file/upload', formData, { headers: headers });
+     
+    // const req = new HttpRequest('POST', "http://localhost:8080/QLCSVC/api/file/upload", formData, {
+    //   reportProgress: true,
+    //   responseType: 'json',
+    // });
+
+    // return this.http.request(req);
+
+  }
 }

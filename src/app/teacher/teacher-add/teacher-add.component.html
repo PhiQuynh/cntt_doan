@@ -118,8 +118,8 @@
                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Bộ môn</label>
                     <div class="col-md-4 col-lg-5 d-flex align-items-center" >
                       <select class="form-select form-select-sm " #select formControlName="subjectId" aria-label=".form-select-lg example">
-                        <option value="" disabled>--Chọn bộ môn--</option>
-                        <option *ngFor="let s of subjects" value={{s.subjectId}} >{{s.subjectName}}</option>
+                        <option [value]="" disabled>--Chọn bộ môn--</option>
+                        <option [value]="1" >Khoa học máy tính</option>
                       </select>
                     </div>
                   </div>

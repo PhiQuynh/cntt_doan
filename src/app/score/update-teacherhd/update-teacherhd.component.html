@@ -39,7 +39,7 @@
                 <div class="row mb-3" style="margin-bottom: 10px;">
                   <label for="Address" class="col-md-4 col-lg-3 col-form-label">Giảng viên hướng dẫn</label>
                   <div class="col-md-4 col-lg-5 d-flex align-items-center" >
-                    <select class="form-select form-select-sm " #select formControlName="statusTeacher"  aria-label=".form-select-lg example">
+                    <select class="form-select form-select-sm " #select formControlName="teacherId"  aria-label=".form-select-lg example">
                       <option value="" disabled>--Chọn giảng viên hướng dẫn--</option>
                       <option *ngFor="let t of teachers" value="{{t.teacherId}}" >{{t.teacherName}}</option>
                     </select>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="text-center">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                    Cập nhập 
+                    Gửi yêu cầu 
                   </button>
                 </div>
                 
@@ -59,7 +59,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Xác nhận cập nhập giảng viên hướng dẫn
+                          Gửi yêu cầu đến giảng viên hướng dẫn
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

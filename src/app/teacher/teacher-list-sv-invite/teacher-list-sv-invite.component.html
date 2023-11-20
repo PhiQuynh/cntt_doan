@@ -34,9 +34,9 @@
                           <th>Đợt bảo vệ </th>
                           <!-- <th>Ngày bắt đầu</th>
                           <th>Ngày kết thúc</th> -->
-                          <th>Giảng viên phản biện</th>
+                          <!-- <th>Giảng viên phản biện</th>
                           <th>Điểm phản biện</th>
-                          <th>Điểm bảo vệ</th>
+                          <th>Điểm bảo vệ</th> -->
                           <th>Thao tác</th>
                       </tr>
                   </thead>
@@ -51,11 +51,12 @@
                           <td>{{user.masterName}}</td>
                           <!-- <td>{{user.startDate}}</td>
                           <td>{{user.endDate}}</td> -->
-                          <td>{{user.teacherPB}}</td>
+                          <!-- <td>{{user.teacherPB}}</td>
                           <td>{{user.scoreArgument}}</td>
-                          <td >{{user.scoreCoucil}}</td>
-                          <td style="text-align: center;">
-                            <a class="delete" title="Delete" data-toggle="tooltip" data-bs-toggle="modal"  data-bs-target="#verticalycentered"><i class="material-icons">&#xE5C9;</i></a>
+                          <td >{{user.scoreCoucil}}</td> -->
+                          <td style="display: flex;justify-content: space-between;">
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="AcceptStudent(user.id)">Yes</button>
+                            <button type="button" class="btn btn-primary" data-bs-target="#verticalycentered">No</button>
                           </td>
                             <div class="modal fade" id="verticalycentered" tabindex="-1">
                               <div class="modal-dialog modal-dialog-centered">
@@ -65,11 +66,11 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                    Xác nhận xóa giảng viên
+                                    Không đồng ý hướng dẫn 
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                    <button type="button" class="btn btn-primary" (click)="NotAcceptStudent(user.id)">Xác nhận</button>
                                   </div>
                                 </div>
                               </div>

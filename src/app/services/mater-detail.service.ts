@@ -71,8 +71,8 @@ export class MaterDetailService {
     return this.http.put(getUrl, form)
   }
   public updateTeacherHD(form : any){
-    const getUrl = "http://localhost:8085/masterdetail/edit_gvpb";
-    return this.http.put(getUrl, form)
+    const getUrl = "http://localhost:8085/teacherStudent/invite";
+    return this.http.post(getUrl, form)
   }
   public updateTitle(form : any){
     const getUrl = "http://localhost:8085/masterdetail/edit_gvpb";
@@ -85,6 +85,11 @@ export class MaterDetailService {
   public updateScoreArgument(form : any){
     const getUrl = "http://localhost:8085/masterdetail/edit_score_argument";
     return this.http.put(getUrl, form)
+  }
+
+  public updateCouncli( form : any){
+    const getUrl = "http://localhost:8085/masterdetail/councli" 
+    return this.http.put(getUrl,form)
   }
 
   // public uploadImage(file:File, masterDetailId : number){
