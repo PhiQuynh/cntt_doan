@@ -32,8 +32,8 @@
                           <th>Tên đề tài Tiếng Anh</th>
                           <!-- <th>Giảng viên hướng dẫn</th> -->
                           <th>Đợt bảo vệ </th>
-                          <!-- <th>Ngày bắt đầu</th>
-                          <th>Ngày kết thúc</th> -->
+                          <th>Ngày bắt đầu</th>
+                          <th>Ngày kết thúc</th>
                           <!-- <th>Giảng viên phản biện</th>
                           <th>Điểm phản biện</th>
                           <th>Điểm bảo vệ</th> -->
@@ -49,13 +49,13 @@
                           <td>{{user.titleNameEn}}</td>
                           <!-- <td>{{user.teacherHD}}</td> -->
                           <td>{{user.masterName}}</td>
-                          <!-- <td>{{user.startDate}}</td>
-                          <td>{{user.endDate}}</td> -->
+                          <td>{{user.startDate}}</td>
+                          <td>{{user.endDate}}</td>
                           <!-- <td>{{user.teacherPB}}</td>
                           <td>{{user.scoreArgument}}</td>
                           <td >{{user.scoreCoucil}}</td> -->
                           <td style="display: flex;justify-content: space-between;">
-                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="AcceptStudent(user.id)">Yes</button>
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="AcceptStudent(user.masterDetailId)">Yes</button>
                             <button type="button" class="btn btn-primary" data-bs-target="#verticalycentered">No</button>
                           </td>
                             <div class="modal fade" id="verticalycentered" tabindex="-1">
@@ -70,7 +70,7 @@
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" (click)="NotAcceptStudent(user.id)">Xác nhận</button>
+                                    <button type="button" class="btn btn-primary" (click)="NotAcceptStudent(user.masterDetailId)">Xác nhận</button>
                                   </div>
                                 </div>
                               </div>

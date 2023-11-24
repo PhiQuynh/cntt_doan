@@ -17,11 +17,11 @@ export class TeacherListSvComponent implements OnInit {
   maters: Maters[] = [];
   year: number = 2023;
   data: any = [];
-  materDetails: any = [];
+  materDetail: any = [];
+  a: any
 
   constructor(
     private router: Router,
-    private materDetailService: MaterDetailService,
     private teacherStudentService : TeacherStudentService,
     private http: HttpClient
   ) {}
@@ -30,12 +30,11 @@ export class TeacherListSvComponent implements OnInit {
     let teacherId = sessionStorage.getItem('teacherId');
     this.teacherStudentService.getSV_accept(teacherId).subscribe((data) => {
       console.log(data, 'teacher list sv hd');
-      // this.data = data;
-      // this.students = data;
-      this.materDetails = data;
+     this.a = data;
+     this.materDetail = this.a.masterDetails
+     console.log(this.a.materDetails, "a");
+     
     });
-
-    // this.getMaters(this.year);
   }
 
   clickGoTo() {
@@ -47,10 +46,4 @@ export class TeacherListSvComponent implements OnInit {
       state: { masterDetailId: masterDetailId },
     });
   }
-  // getMaters(year: number){
-  //   this.materService.getMater(year).subscribe((data) => {
-  //     console.log(data, "mater list");
-  //     this.maters = data;
-  //   })
-  // }
 }

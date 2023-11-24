@@ -12,25 +12,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TeacherEditAccountComponent implements OnInit {
 
-
   updateAccountForm !: FormGroup;
   submited : boolean = false;
-  
+
   constructor(private fb : FormBuilder,
     private userService : UserService,
      private toastr:ToastrService,
      private router : Router){
   }
-
   ngOnInit(): void {
     
     this.updateAccountForm = this.fb.group({
       username: new FormControl("", Validators.required),
       password : new FormControl("", Validators.required),
     })
-
   }
-
   UpdateAccount(updateAccountForm : FormGroup){
       this.submited = true;
       console.log(updateAccountForm, "add sv")
@@ -47,10 +43,8 @@ export class TeacherEditAccountComponent implements OnInit {
         })
       }
     }
-
     onClick(){
       this.router.navigateByUrl("home/page")
     }
-
 }
 

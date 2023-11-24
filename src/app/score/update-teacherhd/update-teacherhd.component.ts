@@ -26,7 +26,6 @@ export class UpdateTeacherhdComponent {
     private fb : FormBuilder) {
     const state = this.router.getCurrentNavigation()?.extras.state;
       this.masterDetailId = state?.['teacherHD'];
-  // this.a = state?.['masterDetailId'];
   }
 
   ngOnInit(): void {
@@ -51,12 +50,6 @@ export class UpdateTeacherhdComponent {
     this.submmited = true ;
     if(this.updateScoreForm.valid){
       this.materDetailService.updateTeacherHD(this.updateScoreForm.value)
-      // .pipe(
-      //   catchError(er => {
-      //     this.toastr.error("Update giảng viên thất bại")
-      //     throw new Error("Update giảng viên thất bại")
-      //   })
-      // )
       .subscribe(data => {
         this.toastr.success("Update giảng viên thành công")
         this.router.navigateByUrl("home/page")

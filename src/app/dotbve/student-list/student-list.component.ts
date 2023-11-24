@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Maters } from 'src/app/models/Maters';
 import { MaterDetailService } from 'src/app/services/mater-detail.service';
 import { MaterService } from 'src/app/services/mater.service';
@@ -15,21 +16,11 @@ export class StudentListComponent implements OnInit{
   master : Maters[] = []
 
   constructor(private masterDetailService : MaterDetailService,
-    private masterService : MaterService){}
+    private masterService : MaterService,
+    private router : Router){}
   ngOnInit(): void {
     this.masterService.getMaterAll().subscribe((data) => {
       this.master = data
     })
-    this.listSV();
   }
-
-  listSV(){
-    this.masterDetailService.getMasterDetails().subscribe((data) => {
-      this.listSv = data
-   })
-  }
-  
-  
-
-
 }

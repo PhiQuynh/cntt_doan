@@ -27,15 +27,9 @@ export class TeacherAddComponent implements OnInit {
 
   constructor(private roleService : RoleService,
     private userService : UserService,
-    private toastr : ToastrService,
-    private http : HttpClient, 
-    private subjectService : SubjectService,
-    private router : Router){
-
-  }
+    private toastr : ToastrService,){}
 
     ngOnInit(): void {
-      this.getSubjects();
       this.getRoles();
       this.addAccount = new FormGroup({
         username : new FormControl("",Validators.required),
@@ -47,17 +41,12 @@ export class TeacherAddComponent implements OnInit {
         email : new FormControl("", Validators.required),
         phone : new FormControl("", Validators.required),
         subjectId : new FormControl("", Validators.required),
-        researchDirection : new FormControl("", Validators.required)
+        researchDirection : new FormControl("", Validators.required),
+        // userId: this.user.userId,
+        sex : new FormControl("", Validators.required)
       })
-      
     }
 
-  getSubjects(){
-    this.subjectService.getSubject().subscribe((data) => {
-      console.log(data, "subject")
-      this.subjects = data
-    })
-}
   addAcounts(addAccount : FormGroup){
     this.submited = true;
     console.log(addAccount, "add sv")
@@ -70,30 +59,18 @@ export class TeacherAddComponent implements OnInit {
       ).subscribe(sv => {
         this.username = this.addAccount.value.username
         console.log(this.username, "username");
-        
-        // this.getUser(this.addAccount.value.username)
+        this.getUser(this.addAccount.value.username)
         this.toastr.success("Thêm mới tài khoản thành công!")
-
       })
     }
   }
-
-
-  addTeacher(addTeacherForm : any){
+  addTeacher(addTeacherForm :FormGroup){
     this.submited = true;
-    console.log(addTeacherForm, "add sv")
     const userId = this.user.userId
-    const url = 'http://localhost:9090/teacher'+"/"
-    return this.http.post(url, this.addTeacherForm.value).pipe(
-      catchError(() => {
-        this.toastr.error("Thêm mới thông tin thất bại!")
-        throw new Error("Thêm mới thông tin thất bại !")
-      })
-    ).subscribe( sv => {
-      this.toastr.success("Thêm mới thông tin thành công")
-      this.router.navigateByUrl("teacher/list");
-    }
-    );
+    console.log(userId, "usserid");
+    console.log(addTeacherForm, "add sv")
+    if(this.addTeacherForm.valid){}
+    
   }
   getRoles(){
     this.roleService.getRole().subscribe((data) => {

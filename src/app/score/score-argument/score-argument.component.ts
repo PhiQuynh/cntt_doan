@@ -16,14 +16,12 @@ export class ScoreArgumentComponent implements OnInit{
   updateScoreForm !: FormGroup;
   submmited : boolean = false
 
-
   constructor(private materDetailService : MaterDetailService,
     private router : Router, 
     private toastr : ToastrService,
     private fb : FormBuilder) {
     const state = this.router.getCurrentNavigation()?.extras.state;
       this.masterDetailId = state?.['scoreArgument'];
-  // this.a = state?.['masterDetailId'];
   }
 
   ngOnInit(): void {

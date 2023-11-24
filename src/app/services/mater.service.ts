@@ -31,13 +31,13 @@ export class MaterService {
     return this.http.post(this.url, form, httpOptions)
   }
 
-  public updateMaster(id : any, form : any){
-    const getUrl = this.url + "/" + {id};
-    return this.http.put(getUrl, id,form)
+  public updateMaster(id : number, form : any){
+    const getUrl = this.url + "/" + id;
+    return this.http.put(getUrl,id,form)
   }
 
   public deleteMaster(id : any){
     const getUrl ="http://localhost:8085/master" + "/" +id
     return this.http.delete(getUrl, id)
   }
-}
+}                                                                             

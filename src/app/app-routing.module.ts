@@ -28,6 +28,8 @@ import { UpdateTeacherpbComponent } from './score/update-teacherpb/update-teache
 import { UpdateTitleComponent } from './score/update-title/update-title.component';
 import { TeacherListSvInviteComponent } from './teacher/teacher-list-sv-invite/teacher-list-sv-invite.component';
 import { UpdateCouncliComponent } from './score/update-councli/update-councli.component';
+import { TeacherListSvPbComponent } from './home/teacher-list-sv-pb/teacher-list-sv-pb.component';
+import { CouncliListTeacherComponent } from './councli/councli-list-teacher/councli-list-teacher.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -55,6 +57,8 @@ const routes: Routes = [
   {path: "sv/update/score/teacherPB", component : UpdateTeacherpbComponent, canActivate:[AuthorizeGuard]},
   {path: "sv/update/score/title", component : UpdateTitleComponent, canActivate:[AuthorizeGuard]},
   {path: "sv/update/councli", component : UpdateCouncliComponent, canActivate:[AuthorizeGuard]},
+  {path: "teacher/list/sv/pb", component : TeacherListSvPbComponent, canActivate:[AuthorizeGuard]},
+  {path: "councli/list/teacher", component : CouncliListTeacherComponent, canActivate:[AuthorizeGuard]},
   {path: "teacher/list/sv/invite", component : TeacherListSvInviteComponent, canActivate:[AuthorizeGuard]},
   {path: "not_found", component: NotFoundComponent,canActivate : [AuthorizeGuard] },
   // { path: '',   redirectTo: '/home', pathMatch: 'full'}

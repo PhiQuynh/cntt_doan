@@ -102,8 +102,6 @@ export class EditSvComponent implements OnInit {
     }
     onFileChange(file:any){
       this.file=file.files[0];
-      // this.editForm.controls["image"].setValue(file.files[0].name);
-  
     }
 
     getTeacher(){
@@ -122,7 +120,6 @@ export class EditSvComponent implements OnInit {
 
     uploadImage() {
       const file: File = this.imageForm.get('imageInput')?.value;
-      // const masterDetailId: number = 12345; // Thay thế bằng giá trị masterDetailId thực tế
       console.log(this.masterDetailId, "upload")
       const url = `${this.REST_API_MATERDETAILS}/${this.masterDetailId}`;
       const formData: FormData = new FormData();
@@ -142,16 +139,5 @@ export class EditSvComponent implements OnInit {
         }
       );
     }
-    // uploadImage(){
-    //   // const file: File = imageInput.files[0];
-    //   this.materDetailService.uploadImage(this.file, this.masterDetailId).pipe(
-    //     catchError(() => {
-    //       this.toastr.error("Upload ảnh không thành công")
-    //       throw new Error("Thêm ảnh không thành công")
-    //     })
-    //   ).subscribe(data => {
-    //     this.toastr.success("Upload ảnh thành công")
-    //   })
-    // }
 
 }

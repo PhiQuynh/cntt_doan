@@ -25,8 +25,7 @@ export class UpdateTeacherpbComponent {
     private toastr : ToastrService, private teacherService : TeacherService,
     private fb : FormBuilder) {
     const state = this.router.getCurrentNavigation()?.extras.state;
-      this.masterDetailId = state?.['teacherPB'];
-  // this.a = state?.['masterDetailId'];
+    this.masterDetailId = state?.['teacherPB'];
   }
 
   ngOnInit(): void {

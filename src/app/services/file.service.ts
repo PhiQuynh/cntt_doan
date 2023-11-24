@@ -3,10 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
+  headers: new HttpHeaders({'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})
 }
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,14 +17,11 @@ export class FileService {
 
   upload(file: File): Observable<HttpEvent<any>> {
   const formData: FormData = new FormData();
-
   formData.append('file', file);
-
   const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
     reportProgress: true,
-    responseType: 'json'
-  });
-
+    responseType: 'json' // Kiểu phản hồi có thể là 'blob' hoặc 'text' tuỳ thuộc vào yêu cầu của bạn
+  })
   return this.http.request(req);
   }
 

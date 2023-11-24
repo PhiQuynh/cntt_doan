@@ -16,18 +16,15 @@ export class SvExcelComponent implements OnInit {
   file!: File;
   fileObj !: File
   selectedFiles?: FileList;
-		  currentFile?: File;
-		  progress = 0;
-		  message = '';
-		
-		  fileInfos?: Observable<any>;
+	currentFile?: File;
+	progress = 0;
+	message = '';
+	fileInfos?: Observable<any>;
   
   constructor(
     private fileService: FileService,
     private toastr: ToastrService,
-    private http: HttpClient
-
-  ) {}
+    private http: HttpClient) {}
 
   ngOnInit() {
     this.fileInfos = this.fileService.getFiles();
@@ -47,30 +44,13 @@ export class SvExcelComponent implements OnInit {
       this.currentFile = file;
     console.log( this.currentFile, "current file");
     
-      this.fileService.upload(this.currentFile).subscribe(
-        (event: any) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.message = event.body.message;
-          this.fileInfos = this.fileService.getFiles();
-        }
-        },
-        (err: any) => {
-        console.log(err);
-        this.progress = 0;
-    
-        if (err.error && err.error.message) {
-          this.message = err.error.message;
-        } else {
-          this.message = 'Could not upload the file!';
-        }
-    
-        this.currentFile = undefined;
-        });
+      this.fileService.upload(this.currentFile).subscribe( data => {
+          this.toastr.success("Upload file thành công")
+      }
+        );
       }
     
-      this.selectedFiles = undefined;
+      // this.selectedFiles = undefined;
     }
     }
   downloadFile(filename: any) {
@@ -104,8 +84,6 @@ export class SvExcelComponent implements OnInit {
     
   }
 
-  private headers = new Headers({'Content-Type' : 'multipart/form-data'});
-    
   sendFile(fileObj: File) {
     const formData: FormData = new FormData();
     formData.append('file', fileObj);
@@ -114,13 +92,5 @@ export class SvExcelComponent implements OnInit {
     headers.append('Content-Type', 'multipart/form-data');
 
     return this.http.post('http://localhost:8085/QLCSVC/api/file/upload', formData, { headers: headers });
-     
-    // const req = new HttpRequest('POST', "http://localhost:8080/QLCSVC/api/file/upload", formData, {
-    //   reportProgress: true,
-    //   responseType: 'json',
-    // });
-
-    // return this.http.request(req);
-
   }
 }

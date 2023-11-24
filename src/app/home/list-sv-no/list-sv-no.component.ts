@@ -12,7 +12,6 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class ListSvNoComponent implements OnInit {
 
-  
   listSV = {}
   masterDetails :any= []
 
@@ -34,7 +33,5 @@ export class ListSvNoComponent implements OnInit {
         console.log(this.masterDetails, "listSV");
       })
   }
-
-  
 
 }

@@ -14,17 +14,6 @@ export class CouncliService {
 
   constructor(private http : HttpClient) { }
 
-  private handleError (error: HttpErrorResponse){
-    if(error.error instanceof ErrorEvent){
-      console.error(error.error.message)
-    } else {
-      console.error(
-       `${error.status} ` + `${error.error}` 
-      )
-    }
-    return throwError('Something went wrong');
-  };
-
   url = "http://localhost:8085/coucil"
 
   getCouncli(){
@@ -33,12 +22,16 @@ export class CouncliService {
   }
 
   public addCouncli(form : FormGroup){
-    
     return this.http.post(this.url, form, httpOptions)
   }
 
-  getCouncliByTeacher(teacherId : any){
+  getTeacherByCouncli(teacherId : any){
     const getUrl = "http://localhost:8085/teachercoucil/teacher" + "/" +teacherId
     return this.http.get(getUrl, teacherId)
+  }
+
+  addTeacherAndCouncli(teacherId: any, councilId : any){
+    const getUrl = "http://localhost:8085/teachercoucil/teacher" + "/" +teacherId +"/council/" +councilId
+    return this.http.post(getUrl, teacherId, councilId)
   }
 }

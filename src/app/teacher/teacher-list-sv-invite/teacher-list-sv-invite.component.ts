@@ -18,24 +18,24 @@ export class TeacherListSvInviteComponent {
   year: number = 2023;
   data: any = [];
   materDetails: any = [];
+  teacherId : any
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private teacherStudentService : TeacherStudentService,
-    private http: HttpClient
+    private teacherStudentService : TeacherStudentService
   ) {}
 
   ngOnInit() {
-    let teacherId = sessionStorage.getItem('teacherId');
-    this.teacherStudentService.getSV_invite(teacherId).subscribe((data) => {
+     this.teacherId = sessionStorage.getItem('teacherId');
+    this.teacherStudentService.getSV_invite(this.teacherId).subscribe((data) => {
       console.log(data, 'teacher list invite');
-      // this.data = data;
-      // this.students = data;
-      this.materDetails = data;
+    
+      this.students = data;
+      this.materDetails = this.students.masterDetails;
+      console.log(this.materDetails, "mas");
+      
     });
-
-    // this.getMaters(this.year);
   }
 
   clickGoTo() {
@@ -49,22 +49,15 @@ export class TeacherListSvInviteComponent {
   }
 
   AcceptStudent(id:any){
-    this.teacherStudentService.acceptStudent(id).subscribe(data => {
+    this.teacherStudentService.acceptStudent(id, this.teacherId).subscribe(data => {
       this.toastr.success("Xác nhận hướng dẫn thành công")
+      this.router.navigateByUrl("teacher/list/sv")
     })
   }
 
   NotAcceptStudent(id:any){
-    this.teacherStudentService.not_acceptStudent(id).subscribe(data => {
+    this.teacherStudentService.not_acceptStudent(id, this.teacherId).subscribe(data => {
       this.toastr.success("Xác nhận không hướng dẫn ")
     })
   }
-
-
-  // getMaters(year: number){
-  //   this.materService.getMater(year).subscribe((data) => {
-  //     console.log(data, "mater list");
-  //     this.maters = data;
-  //   })
-  // }
 }

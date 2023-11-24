@@ -1,38 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppConstants } from 'src/app/app-constants';
+import { MasterDetails } from 'src/app/models/MasterDetails';
 import { Maters } from 'src/app/models/Maters';
 import { Student } from 'src/app/models/Student';
 import { MaterDetailService } from 'src/app/services/mater-detail.service';
 import { MaterService } from 'src/app/services/mater.service';
 
 @Component({
-  selector: 'app-home-list',
-  templateUrl: './home-list.component.html',
-  styleUrls: ['./home-list.component.css']
+  selector: 'app-teacher-list-sv-pb',
+  templateUrl: './teacher-list-sv-pb.component.html',
+  styleUrls: ['./teacher-list-sv-pb.component.css']
 })
-export class HomeListComponent {
-  students : Student[]= []
+export class TeacherListSvPbComponent {
+  students : MasterDetails[]= []
   maters : Maters[] = [];
   year: number = 2023;
   studentName : String = "";
   masterId ?: any;
+  student : any
 
   constructor(private router : Router,
-     private materDetailService : MaterDetailService,
-     private materService : MaterService,
-    private http : HttpClient){
-
-  }
+     private materDetailService : MaterDetailService){}
 
   ngOnInit(){
-      this.materDetailService.getListSV().subscribe((data) => {
+    let teacherId = sessionStorage.getItem('teacherId');
+      this.materDetailService.listSVPB(teacherId).subscribe((data) => {
         console.log(data, "list sv")
-        this.students = data.masterDetails
+        this.student = data
       })
-      
-      this.getMaters(this.year);
   }
 
   clickGoTo(){
@@ -68,12 +64,6 @@ export class HomeListComponent {
     this.router.navigate(['sv/update/score/title'], {
       state: { title: title },
     });
-  }
-  getMaters(year: number){
-    this.materService.getMater(year).subscribe((data) => {
-      console.log(data, "mater list");
-      this.maters = data;
-    })
   }
 
   onSelectChange(event: Event) {

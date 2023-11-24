@@ -14,7 +14,7 @@
               <div class="table-title">
                   <div class="row" style="display: flex;justify-content: space-between;">
       
-                      <div class="col-sm-2">
+                      <div class="col-sm-4">
                           <h2>Danh Sách <b>Sinh Viên</b></h2>
                       </div>
                       <div class="col-sm-3 align-items-center" style="display: flex">
@@ -22,7 +22,7 @@
                           <label for="inputPassword6" class="col-form-label" style="margin-right: 10px;font-size: large;font-weight: bold;">Tìm kiếm</label>
                         </div> -->
                         <div class="col-auto">
-                          <input type="text" id="inputPassword6" class="form-control" [value]="studentName" #studentName name="studentName" placeholder="Tên sinh viên">
+                          <input type="text" id="inputPassword6" class="form-control" #studentName name="studentName" placeholder="Tên sinh viên">
                         </div>
                         <div>
                           <select class="form-select form-select-sm " (change)="onSelectChange($event)" aria-label=".form-select-lg example" style="margin-left: 20px;width: 200px;height: 40px;">
@@ -64,10 +64,10 @@
                           <td><a (click)="goToDetail(user.masterDetailId)">{{user.masterDetailId}}</a></td>
                           <td><a>{{user.studentName}}</a></td>
                           <td>{{user.studentClass}}</td>
-                          <td (click)="goToTitle(user.masterDetailId)">{{user.titleNameVn}}</td>
-                          <td (click)="goToTitle(user.masterDetailId)">{{user.titleNameEn}}</td>
-                          <td (click)="goToUpdateScoreAcument(user.masterDetailId)">{{user.scoreArgument}}</td>
-                          <td (click)="goToUpdateScoreCouncli(user.masterDetailId)">{{user.scoreCoucil}}</td>
+                          <td>{{user.titleNameVn}}</td>
+                          <td>{{user.titleNameEn}}</td>
+                          <td>{{user.scoreArgument}}</td>
+                          <td>{{user.scoreCoucil}}</td>
                           <td style="text-align: center;">
                             <a class="delete" title="Delete" data-toggle="tooltip" data-bs-toggle="modal"  data-bs-target="#verticalycentered"><i class="material-icons">&#xE5C9;</i></a>
                           </td>
@@ -87,7 +87,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div><!-- End Vertically centered Modal--> 
+                            </div>
                       </tr>
   
                   </tbody>

@@ -15,10 +15,7 @@ export class TeacherListComponent implements OnInit{
   teachers : Teacher[] = []
 
   constructor(private router : Router,
-     private teacherService : TeacherService,
-    private http : HttpClient){
-
-  }
+     private teacherService : TeacherService){}
 
   ngOnInit(): void {
     this.getTeacher();

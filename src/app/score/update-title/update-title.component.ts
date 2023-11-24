@@ -19,16 +19,13 @@ export class UpdateTitleComponent {
   updateScoreForm !: FormGroup;
   submmited : boolean = false
 
-
   constructor(private materDetailService : MaterDetailService,
     private router : Router, 
     private toastr : ToastrService, private teacherService : TeacherService,
     private fb : FormBuilder) {
     const state = this.router.getCurrentNavigation()?.extras.state;
       this.masterDetailId = state?.['teacherPB'];
-  // this.a = state?.['masterDetailId'];
   }
-
   ngOnInit(): void {
     this.getMaterDetail();
     this.updateScoreForm = this.fb.group({
@@ -39,14 +36,12 @@ export class UpdateTitleComponent {
     })
     this.getTeacher()
   }
-
   getMaterDetail(){
     this.materDetailService.getSVById(this.masterDetailId).subscribe((data) => {
       console.log(data, "sv")
       this.materDetail = data
     })
   }
-
   updateScoreArgument(updateScoreForm : FormGroup){
     console.log(updateScoreForm);
     

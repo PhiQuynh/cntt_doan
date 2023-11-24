@@ -43,7 +43,7 @@
                   </div>
 
                   <div class="row mb-3" style="margin-bottom: 10px;">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Tên sinh viên</label>
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Ngày kết thúc</label>
                     <div class="col-md-8 col-lg-9">
                         <input type="date" class="form-control" formControlName="endDate" id="date" >
                       <!-- <p class="text-danger mt-2"  *ngIf="(addForm.get('studentName').touched ||submited)&& addForm.get('studentName').errors?.['required']">Trường này không được bỏ trống.</p> -->
@@ -60,7 +60,7 @@
                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Bộ môn</label>
                     <div class="col-md-4 col-lg-5 d-flex align-items-center" >
                       <select class="form-select form-select-sm " #select formControlName="subjectId" aria-label=".form-select-lg example">
-                        <!-- <option value="" disabled>--Chọn bộ môn--</option> -->
+                        <option value="" disabled>--Chọn bộ môn--</option>
                         <option [value]="1" >Khoa học máy tính</option>
                       </select>
                     </div>

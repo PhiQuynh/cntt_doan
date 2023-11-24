@@ -30,7 +30,7 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let m of masters">
-                          <td><a (click)="clickEdit()">{{m.masterId}}</a></td>
+                          <td><a (click)="goToMasterEdit(m.masterId)">{{m.masterId}}</a></td>
                           <td>{{m.masterName}}</td>
                           <td>{{m.startDate}}</td>
                           <td>{{m.endDate}}</td>

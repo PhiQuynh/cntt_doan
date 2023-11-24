@@ -14,8 +14,6 @@ export class MaterDetailService {
 
   geturl = 'http://localhost:8085/masterdetail';
   private REST_API_MATERDETAILS = "http://localhost:8085/masterdetail/getById"
-  private REST_API_MATERDETAILS_IMAGE = "http://localhost:8085/file/image/details"
-  private REST_API_MATERDETAILS_IMAGES = "http://localhost:8085/file/image/detail"
 
   constructor(
     private http : HttpClient
@@ -46,11 +44,6 @@ export class MaterDetailService {
     return this.http.get<any>(url, httpOptions);
   }
 
-  public getMasterDetails(){
-    const url = `http://localhost:8085/masterdetail/details?offset=0&limit=5&materId=1`;
-     return this.http.get<any>(url);
-  }
-
   public listMasterDetailSV(){
     const getSV = "http://localhost:8085/masterdetail/sv<5"
     return this.http.get<any>(getSV);
@@ -71,11 +64,11 @@ export class MaterDetailService {
     return this.http.put(getUrl, form)
   }
   public updateTeacherHD(form : any){
-    const getUrl = "http://localhost:8085/teacherStudent/invite";
-    return this.http.post(getUrl, form)
+    const getUrl = "http://localhost:8085/masterdetail/edit_gvhd";
+    return this.http.put(getUrl, form)
   }
   public updateTitle(form : any){
-    const getUrl = "http://localhost:8085/masterdetail/edit_gvpb";
+    const getUrl = "http://localhost:8085/masterdetail/edit_title";
     return this.http.put(getUrl, form)
   }
   public updateScoreCouncli(form : any){
@@ -90,6 +83,10 @@ export class MaterDetailService {
   public updateCouncli( form : any){
     const getUrl = "http://localhost:8085/masterdetail/councli" 
     return this.http.put(getUrl,form)
+  }
+  public listSVPB(teacherPBId : any){
+    const getUrl = "http://localhost:8085/masterdetail/gvpb"  +"/"+ teacherPBId
+    return this.http.get<any>(getUrl,teacherPBId)
   }
 
   // public uploadImage(file:File, masterDetailId : number){

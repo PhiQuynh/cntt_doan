@@ -32,7 +32,6 @@ export class UpdateCouncliComponent {
     private councliService : CouncliService) {
     const state = this.router.getCurrentNavigation()?.extras.state;
       this.masterDetailId = state?.['councli'];
-  // this.a = state?.['masterDetailId'];
   }
 
   ngOnInit(): void {
@@ -58,12 +57,7 @@ export class UpdateCouncliComponent {
     if(this.updateCouncliForm.valid){
       // cons
       this.materDetailService.updateCouncli(this.updateCouncliForm.value)
-      // .pipe(
-      //   catchError(er => {
-      //     this.toastr.error("Update hộ đồng thất bại !")
-      //     throw new Error("Update hộ đồng thất bại !")
-      //   })
-      // )
+     
       .subscribe(data => {
         this.toastr.success("Update hội đồng thành công")
         this.router.navigateByUrl("home/page")
@@ -75,9 +69,6 @@ export class UpdateCouncliComponent {
     this.councliService.getCouncli().subscribe((data) => {
       console.log(data, "subject list")
       this.a = data
-      // this.a.subjects = this.subjects
-      // console.log(this.subjects, "sub");
-      
     })
   }
 

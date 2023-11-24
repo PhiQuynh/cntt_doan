@@ -43,13 +43,10 @@ export class AddSvComponent implements OnInit {
       titleNameVn : new FormControl("", Validators.required),
       titleNameEn : new FormControl("", Validators.required),
       masterId : new FormControl("", Validators.required),
-      // teacherHDId : new FormControl("", Validators.required)
+      teacherHDId : new FormControl("", Validators.required)
     })
-
     this.getTeacher();
-
     this.getMaters(this.year)
-  
   }
 
   getMaters(year: number){

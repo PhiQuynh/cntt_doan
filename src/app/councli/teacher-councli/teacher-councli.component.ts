@@ -8,16 +8,12 @@ import { CouncliService } from 'src/app/services/councli.service';
 })
 export class TeacherCouncliComponent implements OnInit{
   council : any
-  
- 
-
   constructor(private councliService : CouncliService){}
   ngOnInit(): void {
-    // console.log(this.teacherId, "teacher ID");
 
     const teacherId =  sessionStorage.getItem('teacherId');
     
-    this.councliService.getCouncliByTeacher(teacherId).subscribe((data) => {
+    this.councliService.getTeacherByCouncli(teacherId).subscribe((data) => {
       console.log(data, "teacher councli");
       this.council = data
     })

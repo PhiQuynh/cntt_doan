@@ -9,27 +9,23 @@ import { MaterService } from 'src/app/services/mater.service';
   styleUrls: ['./master-list.component.css']
 })
 export class MasterListComponent implements OnInit {
-
   masters : Maters[] = [];
-
   constructor(private materService : MaterService,
       private router : Router){
-
   }
-
   ngOnInit(): void {
     this.getAllMaster();
   }
-
   getAllMaster(){
     this.materService.getMaterAll().subscribe((data) => {
       console.log(data, "master list");
       this.masters = data
     })
   }
-
-  clickEdit(){
-      this.router.navigateByUrl("/master/edit")
+  goToMasterEdit(masterId : number){
+    this.router.navigate(["master/edit"], {
+      state : {masterId : masterId}
+    })
   }
 
 }

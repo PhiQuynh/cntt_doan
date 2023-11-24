@@ -23,7 +23,6 @@ export class ScoreCouncliComponent {
     private fb : FormBuilder) {
     const state = this.router.getCurrentNavigation()?.extras.state;
       this.masterDetailId = state?.['scoreCoucli'];
-  // this.a = state?.['masterDetailId'];
   }
 
   ngOnInit(): void {
