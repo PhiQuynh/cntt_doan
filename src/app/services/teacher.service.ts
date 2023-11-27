@@ -30,8 +30,8 @@ export class TeacherService {
     return this.http.get<Teacher[]>(url,httpOptions )
   }
 
-  public addTeacher(form : any, userId : number){
-    const url = 'http://localhost:8085/teacher/'+ userId
+  public addTeacher(form : any){
+    const url = 'http://localhost:8085/teacher/'
     return this.http.post(url,form)
   }
 
@@ -48,6 +48,11 @@ export class TeacherService {
   public deleteTeacher(teacherId : any){
     const getUrl = "http://localhost:8085/teacher" +"/" + teacherId
     return this.http.delete(getUrl, teacherId)
+  }
+
+  public countTeacher(){
+    const getUrl = "http://localhost:8085/teacher/count"
+    return this.http.get(getUrl)
   }
 
 }

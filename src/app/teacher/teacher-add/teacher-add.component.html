@@ -80,9 +80,8 @@
                 </ng-container>
               </div>
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                <!-- Profile Edit Form -->
-                <form enctype="multipart/form-data" [formGroup]="addTeacherForm" (ngSubmit)="addTeacher(addTeacherForm.value)">
-                 
+                <ng-container >
+                <form [formGroup]="addTeacherForm" (ngSubmit)="addTeacher(addTeacherForm.value)">
                   <div class="row" style="margin-top:10px ;margin-bottom: 10px;">
                     <div class="col-lg-3 col-md-4 label ">Username</div>
                     <div class="col-lg-9 col-md-8">{{username}}</div>
@@ -124,16 +123,16 @@
                     <div class="col-md-4 col-lg-5 d-flex align-items-center" >
                       <select class="form-select form-select-sm " #select formControlName="subjectId" aria-label=".form-select-lg example">
                         <option [value]="" disabled>--Chọn bộ môn--</option>
-                        <option [value]="1" >Khoa học máy tính</option>
+                        <option value="1" >Khoa học máy tính</option>
                       </select>
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal">
                       Thêm mới
                     </button>
                   </div>
-                  <div class="modal fade" id="verticalycentered" tabindex="-1">
+                  <!-- <div class="modal fade" id="verticalycentered" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -145,14 +144,13 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" >Xác nhận</button>
+                          <button type="submit" class="btn btn-primary">Xác nhận</button>
                         </div>
                       </div>
                     </div>
-                  </div><!-- End Vertically centered Modal-->
-  
+                  </div> -->
                 </form><!-- End Profile Edit Form -->
-  
+              </ng-container>
               </div>
             </div><!-- End Bordered Tabs -->
   

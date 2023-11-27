@@ -34,4 +34,14 @@ export class CouncliService {
     const getUrl = "http://localhost:8085/teachercoucil/teacher" + "/" +teacherId +"/council/" +councilId
     return this.http.post(getUrl, teacherId, councilId)
   }
+
+  getCouncliByTeacher(councliId: any){
+    const getUrl =  "http://localhost:8085/teachercoucil/council/" + councliId +"/teachers"
+    return this.http.get<any>(getUrl, councliId)
+  }
+
+  public countCouncli(){
+    const getUrl = "http://localhost:8085/coucil/count"
+    return this.http.get(getUrl)
+  }
 }

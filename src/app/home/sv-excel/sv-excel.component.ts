@@ -54,7 +54,7 @@ export class SvExcelComponent implements OnInit {
     }
     }
   downloadFile(filename: any) {
-    const fileUrl = 'http://localhost:8085/QLCSVC/api/file' + '/' + filename;
+    const fileUrl = 'http://localhost:8085/file' + '/' + filename;
 
     this.http
       .get(fileUrl, { responseType: 'blob' })
@@ -91,6 +91,6 @@ export class SvExcelComponent implements OnInit {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post('http://localhost:8085/QLCSVC/api/file/upload', formData, { headers: headers });
+    return this.http.post('http://localhost:8085/file/upload', formData, { headers: headers });
   }
 }

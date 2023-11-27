@@ -11,7 +11,7 @@ const httpOptions = {
 export class FileService {
 
 
-  private baseUrl = 'http://localhost:8085/QLCSVC/api/file';
+  private baseUrl = 'http://localhost:8085/file';
 	
   constructor(private http: HttpClient) { }
 

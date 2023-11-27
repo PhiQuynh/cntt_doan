@@ -21,9 +21,9 @@
                         <!-- <div class="col-auto">
                           <label for="inputPassword6" class="col-form-label" style="margin-right: 10px;font-size: large;font-weight: bold;">Tìm kiếm</label>
                         </div> -->
-                        <div class="col-auto">
+                        <!-- <div class="col-auto">
                           <input type="text" id="inputPassword6" class="form-control" #studentName name="studentName" placeholder="Tên sinh viên">
-                        </div>
+                        </div> -->
                         <div>
                           <select class="form-select form-select-sm " (change)="onSelectChange($event)" aria-label=".form-select-lg example" style="margin-left: 20px;width: 200px;height: 40px;">
                             <option [value]="" disabled>--Chọn đợt bảo vệ--</option>
@@ -31,7 +31,7 @@
                           </select>
                         </div>
                         <div class="text-center">
-                          <button type="submit" class="btn btn-primary" >Search</button>
+                          <button type="button" class="btn btn-primary" (click)="search()" >Search</button>
                         </div>
                       </div>
                       <div class="col-sm-2" style="display: flex">

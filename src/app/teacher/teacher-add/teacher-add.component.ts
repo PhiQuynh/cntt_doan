@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs';
 import { Role } from 'src/app/models/Role';
 import { Subject } from 'src/app/models/Subject';
 import { RoleService } from 'src/app/services/role.service';
-import { SubjectService } from 'src/app/services/subject.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,7 +16,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./teacher-add.component.css']
 })
 export class TeacherAddComponent implements OnInit {
-  roles : Role[] = [];
   addTeacherForm !: FormGroup;
   addAccount !: FormGroup;
   submited: boolean=false;
@@ -27,24 +25,29 @@ export class TeacherAddComponent implements OnInit {
 
   constructor(private roleService : RoleService,
     private userService : UserService,
-    private toastr : ToastrService,){}
+    private toastr : ToastrService,
+    private teacherService : TeacherService,
+    private fb : FormBuilder,
+    private router : Router){}
 
     ngOnInit(): void {
-      this.getRoles();
+      
       this.addAccount = new FormGroup({
         username : new FormControl("",Validators.required),
         password : new FormControl("", Validators.required),
         name : new FormControl("", Validators.required)
       })
-      this.addTeacherForm = new FormGroup({
+      this.addTeacherForm = this.fb.group({
         teacherName : new FormControl("", Validators.required),
         email : new FormControl("", Validators.required),
         phone : new FormControl("", Validators.required),
         subjectId : new FormControl("", Validators.required),
         researchDirection : new FormControl("", Validators.required),
-        // userId: this.user.userId,
+        userId: this.user?.userId,
         sex : new FormControl("", Validators.required)
       })
+      // this.getUser(this.username);
+
     }
 
   addAcounts(addAccount : FormGroup){
@@ -69,15 +72,20 @@ export class TeacherAddComponent implements OnInit {
     const userId = this.user.userId
     console.log(userId, "usserid");
     console.log(addTeacherForm, "add sv")
-    if(this.addTeacherForm.valid){}
+    this.addTeacherForm.value.userId = userId
+    if(this.addTeacherForm.valid){
+      this.teacherService.addTeacher(this.addTeacherForm.value)
+      .pipe(catchError(() => {
+        this.toastr.error("Thêm mới thông tin thất bại")
+        throw new Error("Thêm mới thông tin thất bại!")
+      })).subscribe(() => {
+         this.toastr.success("Thêm mới thông tin thành công")
+         this.router.navigateByUrl("teacher/list")
+      })
+    }
     
   }
-  getRoles(){
-    this.roleService.getRole().subscribe((data) => {
-      console.log(data, "list role");
-      this.roles = data;
-    })
-  }
+
   getUser(username : any){
     this.userService.getUser(username).subscribe((username) => {
       console.log(username, "user");

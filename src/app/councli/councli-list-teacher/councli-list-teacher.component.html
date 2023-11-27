@@ -1,1 +1,91 @@
-<p>councli-list-teacher works!</p>
+<div class="pagetitle">
+  <h1>Councli</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="home/page">Councli</a></li>
+      <li class="breadcrumb-item active">Danh sách giảng viên theo hội đồng</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<div class="table-responsive">
+  <div class="table-wrapper">
+      <div class="table-title">
+          <div class="row" >
+              <div class="col-sm-5">
+                  <h2>Danh Sách <b>Giảng viên theo hội đồng</b></h2>
+              </div>
+              <div class="col-sm-7" style="display: flex;">
+                <select class="form-select form-select-sm " (change)="onSelectChange($event)" aria-label=".form-select-lg example" style="margin-left: 20px;height: 40px;">
+                  <option [value]="" disabled>--Chọn hội đồng--</option>
+                  <option *ngFor="let m of counclis" [selected]="coucilId==(m.coucilId+'')" [value]="m.coucilId" >{{m.coucilName}}</option>
+                </select>
+                <div class="text-center" style="height: 40px; padding : 5px;">
+                  <button type="button" class="btn btn-primary" (click)="getTeacherCounclis()" >Search</button>
+                </div>
+              </div>
+          </div>
+      </div>
+      <table class="table table-striped table-hover">
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Tên giảng viên</th>
+                  <th>Định hướng</th>
+                  <th>Email</th>
+                  <th>Số điện thoại</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let t of teacherCouncli">
+                  <td>{{t.teacherId}}</td>
+                  <td>{{t.teacherName}}</td>
+                  <td>{{t.researchDirection}}</td>
+                  <td>{{t.email}}</td>
+                  <td>{{t.phone}}</td>
+                 
+              </tr>
+
+          </tbody>
+      </table>
+      <div class="clearfix">
+
+        <nav aria-label="Page navigation example " >
+          <ul class="pagination justify-content-center" >
+            <li class="page-item "  >
+              <a class="page-link"  >Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" ></a></li>
+
+            <li class="page-item"  >
+              <a class="page-link" >Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="verticalycentered" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Vertically Centered</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-3">
+        <label for="inputNumber" class="col-sm-2 col-form-label">Import</label>
+        <div class="col-sm-10"  >
+          <input class="form-control" #file type="file" id="formFile" >
+        </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" ></button>
+    </div>
+  </div>
+</div>
+</div> -->

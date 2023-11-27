@@ -89,8 +89,38 @@ export class MaterDetailService {
     return this.http.get<any>(getUrl,teacherPBId)
   }
 
+  public countMasterDetail(){
+    const getUrl = "http://localhost:8085/masterdetail/count"
+    return this.http.get(getUrl)
+  }
+
+  public countMasterDetailByTeacherHd(teacherHD : any){
+    const getUrl = "http://localhost:8085/masterdetail/count/teacherHD/" + teacherHD
+    return this.http.get(getUrl)
+  }
+
+  public countMasterDetailByTeacherPB(teacherPB : any){
+    const getUrl = "http://localhost:8085/masterdetail/count/teacherPB/" + teacherPB
+    return this.http.get(getUrl)
+  }
+
+  public countSVLessThan(){
+    const getUrl = "http://localhost:8085/masterdetail/count/SV/less"
+    return this.http.get(getUrl)
+  }
+
+  public countSVMoreThan(){
+    const getUrl = "http://localhost:8085/masterdetail/count/SV/success"
+    return this.http.get(getUrl)
+  }
+
+  public getSVByMaster(masterId : any){
+    const getUrl = "http://localhost:8085/masterdetail/master/" + masterId
+    return this.http.get(getUrl, masterId)
+  }
+
   // public uploadImage(file:File, masterDetailId : number){
-  //   const url = this.REST_API_MATERDETAILS_IMAGES + "/" + masterDetailId;
+  //   const url = this.REST_API_MATERDETAILS + "/" + masterDetailId;
   //   const formData : FormData = new FormData();
   //   formData.append('file', file)
   //   const req = new HttpRequest('POST', url, formData, {
@@ -100,7 +130,4 @@ export class MaterDetailService {
   //   return this.http.request(req);
   // }
 
- 
-
-  
 }

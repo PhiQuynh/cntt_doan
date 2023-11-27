@@ -40,4 +40,11 @@ export class MaterService {
     const getUrl ="http://localhost:8085/master" + "/" +id
     return this.http.delete(getUrl, id)
   }
+
+  public countMaster(){
+    const getUrl = "http://localhost:8085/master/count"
+    return this.http.get(getUrl)
+  }
+
+
 }                                                                             

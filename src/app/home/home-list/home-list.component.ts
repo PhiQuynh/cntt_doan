@@ -13,7 +13,7 @@ import { MaterService } from 'src/app/services/mater.service';
   styleUrls: ['./home-list.component.css']
 })
 export class HomeListComponent {
-  students : Student[]= []
+  students : any
   maters : Maters[] = [];
   year: number = 2023;
   studentName : String = "";
@@ -81,9 +81,12 @@ export class HomeListComponent {
     this.masterId =
       selectedValue !== 'null' ? parseInt(selectedValue, 10) : null;
   }
+  
 
-  search(studentSearch: any): void{
-    this.studentName = studentSearch;
-    
-  }
+  search(){
+    this.materDetailService.getSVByMaster(this.masterId).subscribe((data) => {
+      console.log(data, "teacherCouncli list sjdhsdff");
+        this.students = data
+    })
+}
 }
