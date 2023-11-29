@@ -37,7 +37,7 @@ export class UserService {
   }
 
   getUser(username : any){
-    const url = 'http://localhost:8085/user/'+username
+    const url = 'http://localhost:8085/user/user/'+username
     return this.http.get<any>(url,username);
   }
 
