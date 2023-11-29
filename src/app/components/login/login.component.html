@@ -22,7 +22,7 @@
                   <p class="text-center small">Enter your username & password to login</p>
                 </div>
 
-                <form class="row g-3 needs-validation"  [formGroup]="signinForm" (ngSubmit)="login(signinForm.value)">
+                <form class="row g-3 needs-validation"  [formGroup]="signinForm">
 
                   <div class="col-12">
                     <label for="yourUsername" class="form-label">Username</label>
@@ -36,13 +36,13 @@
 
                   <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword" formControlName="password">
+                    <input type="password" name="password" class="form-control" id="yourPassword" autocomplete="current-password"  formControlName="password">
                     <!-- <p class="text-danger mt-1"  *ngIf="(signinForm.get('password').touched||submitted)&&signinForm.get('password').errors?.['required']">Please enter your password.</p> -->
                   </div>
 
 
                   <div class="col-12">
-                    <button class="btn btn-primary w-100" type="submit">Login</button>
+                    <button class="btn btn-primary w-100" type="button" (click)="login(signinForm.value)">Login</button>
                   </div>
                 
 

@@ -46,10 +46,10 @@ export class UpdateTeacherpbComponent {
 
   updateScoreArgument(updateScoreForm : FormGroup){
     console.log(updateScoreForm);
-    
     this.submmited = true ;
     if(this.updateScoreForm.valid){
-      this.materDetailService.updateTeacherPB(this.updateScoreForm.value).pipe(
+      this.materDetailService.updateTeacherPB(this.updateScoreForm.value)
+      .pipe(
         catchError(er => {
           this.toastr.error("Update giảng viên thất bại")
           throw new Error("Update giảng viên thất bại")

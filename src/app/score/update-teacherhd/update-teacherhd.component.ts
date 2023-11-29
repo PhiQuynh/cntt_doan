@@ -31,7 +31,7 @@ export class UpdateTeacherhdComponent {
   ngOnInit(): void {
     this.getMaterDetail();
     this.updateScoreForm = this.fb.group({
-      teacherId : new FormControl("", Validators.required),
+      teacherHDId : new FormControl(),
       masterDetailId : this.masterDetailId
     })
     this.getTeacher()
@@ -45,18 +45,35 @@ export class UpdateTeacherhdComponent {
   }
 
   updateScoreArgument(updateScoreForm : FormGroup){
-    console.log(updateScoreForm, "giảng viên hướng dẫn");
-    
+    console.log(updateScoreForm);
     this.submmited = true ;
     if(this.updateScoreForm.valid){
       this.materDetailService.updateTeacherHD(this.updateScoreForm.value)
-      .subscribe(data => {
+      .pipe(
+        catchError(er => {
+          this.toastr.error("Update giảng viên thất bại")
+          throw new Error("Update giảng viên thất bại")
+        })
+      ).subscribe(data => {
         this.toastr.success("Update giảng viên thành công")
         this.router.navigateByUrl("home/page")
         window.location.reload()
       })
     }
   }
+
+  // updateScoreArgument(updateScoreForm : FormGroup){
+  //   console.log(updateScoreForm, "giảng viên hướng dẫn");
+  //   this.submmited = true ;
+  //   if(this.updateScoreForm.valid){
+  //     this.materDetailService.updateTeacherHD(this.updateScoreForm.value)
+  //     .subscribe(data => {
+  //       this.toastr.success("Update giảng viên thành công")
+  //       this.router.navigateByUrl("home/page")
+  //       window.location.reload()
+  //     })
+  //   }
+  // }
   getTeacher(){
     this.teacherService.getTeacher().subscribe((data) => {
       console.log(data, "teacher list")

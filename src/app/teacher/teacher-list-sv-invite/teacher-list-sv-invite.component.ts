@@ -58,6 +58,7 @@ export class TeacherListSvInviteComponent {
   NotAcceptStudent(id:any){
     this.teacherStudentService.not_acceptStudent(id, this.teacherId).subscribe(data => {
       this.toastr.success("Xác nhận không hướng dẫn ")
+      window.location.reload();
     })
   }
 }

@@ -56,9 +56,9 @@
                           <td >{{user.scoreCoucil}}</td> -->
                           <td style="display: flex;justify-content: space-between;">
                             <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="AcceptStudent(user.masterDetailId)">Yes</button>
-                            <button type="button" class="btn btn-primary" data-bs-target="#verticalycentered">No</button>
+                            <button type="button" class="btn btn-primary"  (click)="NotAcceptStudent(user.masterDetailId)">No</button>
                           </td>
-                            <div class="modal fade" id="verticalycentered" tabindex="-1">
+                            <!-- <div class="modal fade" id="verticalycentered" tabindex="-1">
                               <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -74,7 +74,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
                       </tr>
   
                   </tbody>
