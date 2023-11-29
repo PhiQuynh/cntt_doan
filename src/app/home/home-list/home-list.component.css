@@ -151,4 +151,9 @@
     margin-top: 10px;
     font-size: 13px;
   }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
   

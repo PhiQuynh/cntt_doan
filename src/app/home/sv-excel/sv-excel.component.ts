@@ -83,14 +83,4 @@ export class SvExcelComponent implements OnInit {
     console.log(this.file, "file");
     
   }
-
-  sendFile(fileObj: File) {
-    const formData: FormData = new FormData();
-    formData.append('file', fileObj);
-
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-
-    return this.http.post('http://localhost:8085/file/upload', formData, { headers: headers });
-  }
 }

@@ -42,7 +42,8 @@ import { TeacherListSvInviteComponent } from './teacher/teacher-list-sv-invite/t
 import { UpdateCouncliComponent } from './score/update-councli/update-councli.component';
 import { TeacherListSvPbComponent } from './home/teacher-list-sv-pb/teacher-list-sv-pb.component';
 import { CouncliListTeacherComponent } from './councli/councli-list-teacher/councli-list-teacher.component';
-
+import { NgxPaginationModule, PaginationService } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,10 +90,13 @@ import { CouncliListTeacherComponent } from './councli/councli-list-teacher/coun
     HttpClientModule,
     ToastrModule.forRoot(), 
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule,
+    CommonModule,
   ],
   providers: [
-    TokenInterceptor
+    TokenInterceptor,
+    PaginationService
   ],
   bootstrap: [AppComponent]
 })
