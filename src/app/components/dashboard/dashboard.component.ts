@@ -27,10 +27,10 @@ export class DashboardComponent implements OnInit{
     this.userService.getUser(username).subscribe((data) => {
       console.log(data, "get user");
       this.getUser = data
-      if(this.getUser?.roleName === 'subject'){
+      if(this.getUser?.roleName === 'Bộ môn'){
       this.ktraBoMon = true
     } 
-    if (this.getUser?.roleName === 'teacher'){
+    if (this.getUser?.roleName === 'Giảng viên'){
       this.ktraGiangVien = true;
       this.teacherService.getTeacherById().subscribe((data) => {
         console.log(data, "teacher");
